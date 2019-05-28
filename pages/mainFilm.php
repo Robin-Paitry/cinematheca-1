@@ -2,6 +2,7 @@
 
 require_once ('./common/connexionBase.php');
 
+
 $id = $_GET['id'];
 
 $stmt = $connection->prepare("SELECT * FROM `participe` INNER JOIN film ON participe.film_id = film.id INNER JOIN personne ON participe.personne_id = personne.id INNER JOIN role ON participe.role_id = role.id WHERE role.nom LIKE '%act%' AND participe.film_id=" . $id);
@@ -26,51 +27,57 @@ $film = $stmt2->fetchall();
 
         foreach($film as $affiche) {
 
-            ?>
+        ?>
 
-            <div class="col-12 col-md-4 d-flex justify-content-center pb-4 "><img src="<?php echo $affiche['url_affiche'];?>" alt="Image"></div>
+        <div class="col-12 col-md-4 d-flex justify-content-center pb-4 "><img src="<?php echo $affiche['url_affiche'];?>" alt="Image"></div>
 
-            <div class="col-12 col-md-8">
+        <div class="col-12 col-md-8">
             <h2><?php echo $affiche['titre'] . " " . "(" . $affiche['annee'] . ")";?></h2>
             <p><?php echo $affiche['nom'];?></p>
-                <br>
+            <br>
 
             <?php
-        }
-        ?>
-
-
-
-        <?php
-
-        foreach ($realisateurs as $personne){
-            ?>
-
-            <h3>Réalisateur</h3>
-            <p><?php echo $personne['full_name'];?></p>
-
-
-
-            <?php
-        }
-        ?>
-
-        <h3>Acteurs Principaux</h3>
-
-        <?php
-
-        foreach ($participe as $personne){
+            }
             ?>
 
 
-            <p><?php echo $personne['full_name'];?></p>
 
             <?php
-        }
 
-        ?>
+            foreach ($realisateurs as $personne){
+                ?>
+
+                <h3>Réalisateur</h3>
+                <p><?php echo $personne['full_name'];?></p>
+
+
+
+                <?php
+            }
+            ?>
+
+            <h3>Acteurs Principaux</h3>
+
+            <?php
+
+            foreach ($participe as $personne){
+                ?>
+
+
+                <p><?php echo $personne['full_name'];?></p>
+
+                <?php
+            }
+
+            ?>
+
+
+            <a href="./controller/supprimer.php?id=<?= $id ?>">
+                <i class="fas fa-trash-alt"></i>
+            </a>
+
+        </div>
     </div>
-</div>
 </div>
 
 <div class="container">

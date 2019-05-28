@@ -1,19 +1,21 @@
 // Scrolling up & down
 
-$(document).ready(function(){
-    $('#myBtn').on('click', function(evt){
+$(document).ready(function () {
+    $('#myBtn').on('click', function (evt) {
         evt.preventDefault();
         var target = $(this).attr('href');
         $('html, body')
             .stop()
-            .animate({scrollTop: $(target).offset().top}, 1000 );
+            .animate({scrollTop: $(target).offset().top}, 1000);
     });
 });
 
 
 // Show button on scroll
 
-window.onscroll = function() {scrollFunction()};
+window.onscroll = function () {
+    scrollFunction()
+};
 
 function scrollFunction() {
     if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
@@ -21,4 +23,16 @@ function scrollFunction() {
     } else {
         document.getElementById("myBtn").style.display = "none";
     }
+}
+
+function chercherToto() {
+    $.ajax('http://localhost/projet2/cinematheca/search.php')
+        .done(function (resultatDepuisPHP) {
+            faireLeRenduDeRecherche(resultatDepuisPHP);
+        });
+}
+
+
+function faireLeRenduDeRecherche(lesResultats) {
+    alert(lesResultats);
 }

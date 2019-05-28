@@ -1,6 +1,6 @@
 <?php
 
-require('../.env');
+require('../env.php');
 
 // Create connection
 

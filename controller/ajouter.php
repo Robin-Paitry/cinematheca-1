@@ -21,15 +21,6 @@ if (isset($_POST['autre']) && (!EMPTY ($_POST['autre']))){
 }
 
 
-
-
-if (isset($_POST['autreReal'])&& (!EMPTY ($_POST['autreReal']))){
-    $realisateur = $_POST['autreReal'];
-
-}else{
-    $realisateur = $_POST['realisateur'];
-}
-
 if (isset($_POST['autrePaysReal'])&& (!EMPTY ($_POST['autrePaysReal']))){
     $paysReal = $_POST['autrePaysReal'];
     $stmt = $connection->prepare("INSERT INTO `pays` (`nom`) VALUES (:autrePaysReal)");
@@ -39,14 +30,28 @@ if (isset($_POST['autrePaysReal'])&& (!EMPTY ($_POST['autrePaysReal']))){
     $paysReal = $_POST['paysReal'];
 }
 
+if (isset($_POST['autreReal'])&& (!EMPTY ($_POST['autreReal']))){
+    $realisateur = $_POST['autreReal'];
 
+    $selectPaysReal = "SELECT id FROM pays WHERE nom = '". $paysReal ."'";
+    $stmt = $connection->prepare("INSERT INTO `personne` (`full_name`, `pays_id`) VALUES (:full_name,(". $selectPaysReal. "))");
+    $stmt->bindParam(':full_name', $realisateur);
+    $stmt->execute();
 
-
-if (isset($_POST['autreActeur'])&& (!EMPTY ($_POST['autreActeur']))){
-    $acteur = $_POST['autreActeur'];
 }else{
-    $acteur = $_POST['acteur'];
+    $realisateur = $_POST['realisateur'];
 }
+
+
+
+
+
+
+
+
+
+
+
 
 if (isset($_POST['autrePaysActeur'])&& (!EMPTY ($_POST['autrePaysActeur']))){
     $paysActeur = $_POST['autrePaysActeur'];
@@ -57,17 +62,32 @@ if (isset($_POST['autrePaysActeur'])&& (!EMPTY ($_POST['autrePaysActeur']))){
     $paysActeur = $_POST['paysActeur'];
 }
 
+if (isset($_POST['autreActeur'])&& (!EMPTY ($_POST['autreActeur']))){
+    $acteur = $_POST['autreActeur'];
+    $selectPaysActeur = "SELECT id FROM pays WHERE nom = '". $paysActeur ."'";
+    $stmt = $connection->prepare("INSERT INTO `personne` (`full_name`, `pays_id`) VALUES (:full_name,(". $selectPaysActeur. "))");
+    $stmt->bindParam(':full_name', $acteur);
+    $stmt->execute();
 
-
-
-if (isset($_POST['autreActeur2'])&& (!EMPTY ($_POST['autreActeur2']))){
-    $acteur2 = $_POST['autreActeur2'];
 }else{
-    $acteur2 = $_POST['acteur2'];
+    $acteur = $_POST['acteur'];
 }
+
+
+
+
+
+
+
+
+
+
+
+
 
 if (isset($_POST['autrePaysActeur2'])&& (!EMPTY ($_POST['autrePaysActeur2']))){
     $paysActeur2 = $_POST['autrePaysActeur2'];
+
     $stmt = $connection->prepare("INSERT INTO `pays` (`nom`) VALUES (:autrePaysActeur2)");
     $stmt->bindParam(':autrePaysActeur2', $paysActeur2);
     $stmt->execute();
@@ -75,14 +95,29 @@ if (isset($_POST['autrePaysActeur2'])&& (!EMPTY ($_POST['autrePaysActeur2']))){
     $paysActeur2 = $_POST['paysActeur2'];
 }
 
+if (isset($_POST['autreActeur2'])&& (!EMPTY ($_POST['autreActeur2']))){
+    $acteur2 = $_POST['autreActeur2'];
+
+    $selectPaysActeur2 = "SELECT id FROM pays WHERE nom = '". $paysActeur2 ."'";
+    $stmt = $connection->prepare("INSERT INTO `personne` (`full_name`, `pays_id`) VALUES (:full_name,(". $selectPaysActeur2. "))");
+    $stmt->bindParam(':full_name', $acteur2);
+    $stmt->execute();
 
 
-
-if (isset($_POST['autreActeur3'])&& (!EMPTY ($_POST['autreActeur3']))){
-    $acteur3 = $_POST['autreActeur3'];
 }else{
-    $acteur3 = $_POST['acteur3'];
+    $acteur2 = $_POST['acteur2'];
 }
+
+
+
+
+
+
+
+
+
+
+
 
 if (isset($_POST['autrePaysActeur3'])&& (!EMPTY ($_POST['autrePaysActeur3']))){
     $paysActeur3 = $_POST['autrePaysActeur3'];
@@ -92,6 +127,21 @@ if (isset($_POST['autrePaysActeur3'])&& (!EMPTY ($_POST['autrePaysActeur3']))){
 }else{
     $paysActeur3 = $_POST['paysActeur3'];
 }
+
+if (isset($_POST['autreActeur3'])&& (!EMPTY ($_POST['autreActeur3']))){
+    $acteur3 = $_POST['autreActeur3'];
+
+    $selectPaysActeur3 = "SELECT id FROM pays WHERE nom = '". $paysActeur3 ."'";
+    $stmt = $connection->prepare("INSERT INTO `personne` (`full_name`, `pays_id`) VALUES (:full_name,(". $selectPaysActeur3. "))");
+    $stmt->bindParam(':full_name', $acteur3);
+    $stmt->execute();
+
+}else{
+    $acteur3 = $_POST['acteur3'];
+}
+
+
+
 
 
 
@@ -116,50 +166,6 @@ $stmt->bindParam(':url_affiche', $url_affiche);
 $stmt->execute();
 
 
-
-
-$selectPaysReal = "SELECT id FROM pays WHERE nom = '". $paysReal ."'";
-
-$stmt = $connection->prepare("INSERT INTO `personne` (`full_name`, `pays_id`) VALUES (:full_name,(". $selectPaysReal. "))");
-
-$stmt->bindParam(':full_name', $realisateur);
-
-$stmt->execute();
-
-
-
-
-
-
-$selectPaysActeur = "SELECT id FROM pays WHERE nom = '". $paysActeur ."'";
-
-$stmt = $connection->prepare("INSERT INTO `personne` (`full_name`, `pays_id`) VALUES (:full_name,(". $selectPaysActeur. "))");
-
-$stmt->bindParam(':full_name', $acteur);
-
-$stmt->execute();
-
-
-
-
-$selectPaysActeur2 = "SELECT id FROM pays WHERE nom = '". $paysActeur2 ."'";
-
-$stmt = $connection->prepare("INSERT INTO `personne` (`full_name`, `pays_id`) VALUES (:full_name,(". $selectPaysActeur2. "))");
-
-$stmt->bindParam(':full_name', $acteur2);
-
-$stmt->execute();
-
-
-
-
-$selectPaysActeur3 = "SELECT id FROM pays WHERE nom = '". $paysActeur3 ."'";
-
-$stmt = $connection->prepare("INSERT INTO `personne` (`full_name`, `pays_id`) VALUES (:full_name,(". $selectPaysActeur3. "))");
-
-$stmt->bindParam(':full_name', $acteur3);
-
-$stmt->execute();
 
 
 
