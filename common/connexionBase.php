@@ -2,8 +2,7 @@
 
 function connectionBase(){
 
-    include('./env.php');
-    include('../env.php');
+    include($_SERVER['DOCUMENT_ROOT'] . '/projet2/cinematheca/env.php');
 
     try {
         $pdo_options[PDO::MYSQL_ATTR_INIT_COMMAND] = 'SET NAMES utf8';

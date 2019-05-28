@@ -1,6 +1,9 @@
 <?php
 
-require_once ('../common/connexionBase.php');
+include($_SERVER['DOCUMENT_ROOT'] . '/projet2/cinematheca/common/connexionBase.php');
+
+
+//require_once ('../common/connexionBase.php');
 
 
 $titre=$_POST['titre'];
