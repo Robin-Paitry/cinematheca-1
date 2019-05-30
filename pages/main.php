@@ -14,9 +14,9 @@ $lesUrls = $stmt->fetchall();
 <div class="container">
 
     <div class="row">
-        <div class="col-3"><i class=" fas fa-search"></i></div>
-        <input class="col-9" type="text" name="recherche" id="recherche" placeholder="Recherche" onchange="" value="">
-
+        <div class="col-3"><i class=" fas fa-search fa-2x"></i></div>
+        <input class="col-9" type="text" name="recherche" id="recherche" placeholder="Recherche" value="">
+        <div id="resultatRecherche"></div>
 
     </div>
     <div class="row mt-5">
